@@ -23,8 +23,6 @@ import Container from '@mui/material/Container';
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
-
-
 const Signup:NextPage=()=>{
     const router =useRouter();
     const [user,setUser]=useState({
