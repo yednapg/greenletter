@@ -20,6 +20,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Search from '../components/search'
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
@@ -61,6 +62,7 @@ const Signup:NextPage=()=>{
         // <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        <Search/>
         <Box
           sx={{
             marginTop: 8,

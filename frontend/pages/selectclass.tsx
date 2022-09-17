@@ -4,15 +4,13 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 
-
-
-const Search:NextPage=()=>{
+const Selectclass=()=>{
     return (
         <>
-            <input type="text" name="" id="" />
+        select class
+        <input type="text" name="" id="" />
         </>
     )
-
 }
 
-export default Search;
+export default Selectclass;

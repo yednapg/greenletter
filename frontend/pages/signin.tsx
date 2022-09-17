@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 //rfs
+import { useRouter } from 'next/router'
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -32,10 +33,17 @@ export default function SignIn() {
 
     const {name,email,password}=user
 
+    const router=useRouter();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
-    account.createEmailSession(email,)
+    account.createEmailSession(email,password).then(res=>{
+        router.push("/selectclass");
+    }
+        ).catch(error=>{
+            console.log(user)
+            console.log(error)
+        })
 
 
   };
