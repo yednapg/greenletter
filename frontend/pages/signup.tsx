@@ -81,29 +81,19 @@ const Signup:NextPage=()=>{
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
                   // name="firstName"
                   required
                   fullWidth
                   id="firstName"
-                  label="First Name"
+                  label="Name"
                   autoFocus
                   name="name"
                   value={name}
                   onChange={(e)=>setUser({...user,[e.target.name]:e.target.value})}
                 />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                {/* <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                /> */}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -131,6 +121,16 @@ const Signup:NextPage=()=>{
                 />
               </Grid>
               <Grid item xs={12}>
+                <TextField
+                  autoComplete="school-name"
+                  required
+                  fullWidth
+                  id="school"
+                  label="School Name"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12}>
                 {/* <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="I want to receive inspiration, marketing promotions and updates via email."
@@ -153,7 +153,6 @@ const Signup:NextPage=()=>{
               </Grid>
             </Grid>
           </Box>
-        {JSON.stringify({user})}
         </Box>
         {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>
