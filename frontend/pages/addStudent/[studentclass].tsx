@@ -1,11 +1,11 @@
-import { Query } from 'appwrite'
+import { Query,Permission,Role } from 'appwrite'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { COLLECTION_ID, DATABASE_ID } from '../../config.env'
-import { database } from '../../config.keys'
+import { account, database } from '../../config.keys'
 import styles from '../styles/Home.module.css'
 
 
@@ -29,20 +29,47 @@ const Selectclass: NextPage = () => {
     const router = useRouter();
     let { studentclass } = router.query;
 
-    const [studnet, setStudent] = useState<any>({
+    const [student, setStudent] = useState<any>({
         name: "",
         dateofbirth: "",
         admissionNumber: "",
         presentDates: [],
-        absentDates: []
+        absentDates: [],
+        succes:"",
+        error:""
+        
     })
+    const [login,setLogin]=useState({
+        name:""
+    })
+    useEffect(()=>{
+        const getData=account.get();
+        getData.then(res=>{
+            login.name=res.name
+        }).catch(res=>{
+            console.log(res);
+        })
+    },[])
 
-    const { name, dateofbirth, admissionNumber} = studnet;
+    // const []
+
+    const { name, dateofbirth, admissionNumber,succes,error,presentDates,absentDates} = student;
+
 
     // class=string(class)
     // studentclass=String(studentclass) || " "
-    const handleSubmit = () => {
-
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        database.createDocument(DATABASE_ID,COLLECTION_ID,"unique()",{name,dateofbirth,admissionNumber,presentDates,absentDates},[
+            // Permission.read(Role.any()), 
+        ]).then(res=>{
+            console.log(student)
+            console.log(res)
+            setStudent({name:"",dateofbirth:"",admissionNumber:"",error:"",succes:"Student Created Sucessfully"})
+        }).catch(res=>{
+            console.log("errme")
+            setStudent({...student,error:"Something went wrong",succes:""})
+        })
 
     }
 
@@ -55,6 +82,8 @@ const Selectclass: NextPage = () => {
     return (
         <>
             {/* <Search /> */}
+            {succes && <div style={{color:"red"}} >{succes}</div>}
+            {error && <div style={{color:"red"}} >{error}</div>}
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
 
@@ -87,7 +116,7 @@ const Selectclass: NextPage = () => {
                                     autoFocus
                                     name="name"
                                     value={name}
-                                // onChange={(e) => setUser({ ...user, [e.target.name]: e.target.value })}
+                                onChange={(e) => setStudent({ ...student, [e.target.name]: e.target.value })}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -98,7 +127,7 @@ const Selectclass: NextPage = () => {
                                     label="Date of Birth"
                                     name="dob"
                                 // value={email}
-                                // onChange={(e) => setUser({ ...user, [e.target.name]: e.target.value })}
+                                onChange={(e) => setStudent({ ...student, dateofbirth: e.target.value })}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -111,7 +140,7 @@ const Selectclass: NextPage = () => {
                                     id="admissionNumber"
                                     autoComplete="admissionNumber"
                                 // value={password}
-                                // onChange={(e) => setUser({ ...user, [e.target.name]: e.target.value })}
+                                onChange={(e) => setStudent({ ...student, admissionNumber: e.target.value })}
                                 />
                             </Grid>
                             <Grid item xs={12}>
