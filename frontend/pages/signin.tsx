@@ -11,3 +11,5 @@ const SignIn:NextPage=()=>{
         </>
     )
 }
+
+export default SignIn;
