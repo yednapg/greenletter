@@ -32,6 +32,7 @@ const Selectclass: NextPage = () => {
     const [student, setStudent] = useState<any>({
         name: "",
         dateofbirth: "",
+        classNumber:"",
         admissionNumber: "",
         presentDates: [],
         absentDates: [],
@@ -53,14 +54,14 @@ const Selectclass: NextPage = () => {
 
     // const []
 
-    const { name, dateofbirth, admissionNumber,succes,error,presentDates,absentDates} = student;
+    const { name, dateofbirth,classNumber, admissionNumber,succes,error,presentDates,absentDates} = student;
 
 
     // class=string(class)
     // studentclass=String(studentclass) || " "
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        database.createDocument(DATABASE_ID,COLLECTION_ID,"unique()",{name,dateofbirth,admissionNumber,presentDates,absentDates},[
+        database.createDocument(DATABASE_ID,COLLECTION_ID,"unique()",{name,dateofbirth,classNumber,admissionNumber,presentDates,absentDates},[
             // Permission.read(Role.any()), 
         ]).then(res=>{
             console.log(student)
