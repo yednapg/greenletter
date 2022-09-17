@@ -93,7 +93,7 @@ const Selectclass: NextPage = () => {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-
+                        maxWidth: "100%"
 
                     }}
                 >
@@ -121,14 +121,11 @@ const Selectclass: NextPage = () => {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
-                                    required
-                                    fullWidth
-                                    id="dob"
-                                    label="Date of Birth"
-                                    name="dob"
-                                // value={email}
-                                onChange={(e) => setStudent({ ...student, dateofbirth: e.target.value })}
-                                />
+                                  style={{width:"100%"}}
+                                  id="date"
+                                  label="Date of Birth"
+                                  type="date"
+                                  defaultValue="2017-05-24" />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
