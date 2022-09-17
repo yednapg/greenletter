@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { COLLECTION_ID, DATABASE_ID } from '../../config.env'
 import { database } from '../../config.keys'
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/StudentList.module.css'
 
 
 const Selectclass:NextPage=()=>{
@@ -39,13 +39,17 @@ const Selectclass:NextPage=()=>{
     return (
         <>
        profile
+        <div className={styles.container}>
         
-        <input type="text" name="" id="" />
-        {studnets && studnets.map((index,student)=>{
+
+        {/* <input type="text" name="" id="" /> */}
+                <div className={styles.list}><div ><span className={styles.listItem}>name</span><span>adminssion</span></div><div><span>edit</span><span className={styles.listItem}>delete</span></div></div>
+        {/* {studnets && studnets.map((index,student)=>{
             return (
                 
-            )
-        })}
+            ) */}
+        {/* })} */}
+            </div>
         </>
         
     )
