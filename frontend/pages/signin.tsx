@@ -8,6 +8,7 @@ const SignIn:NextPage=()=>{
     return(
         <>
         sigin
+        <input type="text" name="" id="" />
         </>
     )
 }
