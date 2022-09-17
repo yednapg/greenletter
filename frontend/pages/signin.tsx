@@ -1,10 +1,12 @@
+import React from "react"
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 //rfs
+// import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from 'next/router'
-import * as React from 'react';
+// import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,6 +20,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import 'react-toastify/dist/ReactToastify.css';
 import { account } from '../config.keys';
 
 
@@ -26,12 +29,11 @@ const theme = createTheme();
 export default function SignIn() {
 
     const [user,setUser]=React.useState({
-        name:"",
         email:"",
         password:""
     })
 
-    const {name,email,password}=user
+    const {email,password}=user
 
     const router=useRouter();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -41,7 +43,8 @@ export default function SignIn() {
         router.push("/selectclass");
     }
         ).catch(error=>{
-            console.log(user)
+            // toast("Something went wrong")
+            // console.log(user)
             console.log(error)
         })
 
@@ -111,6 +114,7 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
+        {/* <ToastContainer /> */}
       </Container>
     // </ThemeProvider>
   );

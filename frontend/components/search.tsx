@@ -9,6 +9,7 @@ import styles from '../styles/Home.module.css'
 const Search:NextPage=()=>{
     return (
         <>
+        
             <input type="text" name="" id="" />
         </>
     )

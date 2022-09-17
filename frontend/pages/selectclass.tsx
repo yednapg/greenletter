@@ -4,10 +4,11 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 
-const Selectclass=()=>{
+const Selectclass:NextPage=()=>{
     return (
         <>
         select class
+
         <input type="text" name="" id="" />
         </>
     )

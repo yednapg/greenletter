@@ -1,4 +1,4 @@
-import {Client,Account} from "appwrite"
+import {Client,Account, Databases} from "appwrite"
 import { PROJECT_ID,API_ENDPOINT } from "./config.env";
 const client = new Client();
 
@@ -10,5 +10,5 @@ client
 ;
 
 
-
+export const database =new Databases(client)
 export const account = new Account(client);
