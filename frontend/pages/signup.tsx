@@ -60,9 +60,11 @@ const Signup:NextPage=()=>{
 
     return (
         // <ThemeProvider theme={theme}>
+        <>
+        <Search/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Search/>
+      
         <Box
           sx={{
             marginTop: 8,
@@ -121,16 +123,6 @@ const Signup:NextPage=()=>{
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  autoComplete="school-name"
-                  required
-                  fullWidth
-                  id="school"
-                  label="School Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12}>
                 {/* <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="I want to receive inspiration, marketing promotions and updates via email."
@@ -156,6 +148,7 @@ const Signup:NextPage=()=>{
         </Box>
         {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>
+      </>
     // </ThemeProvider>
   );
     
