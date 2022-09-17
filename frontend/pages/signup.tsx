@@ -7,6 +7,7 @@ import { account } from '../config.keys'
 // import { account } from '../config'
 import { useState } from 'react'
 //rsf
+import { useRouter } from 'next/router'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -25,7 +26,7 @@ import Container from '@mui/material/Container';
 
 
 const Signup:NextPage=()=>{
-
+    const router =useRouter();
     const [user,setUser]=useState({
         name:"",
         email:"",
@@ -42,11 +43,19 @@ const Signup:NextPage=()=>{
     }
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-          email: data.get('email'),
-          password: data.get('password'),
-        });
+        console.log(user)
+
+        const promise=account.create("unique()",email,password,name)
+        promise.then(res=>{
+            router.push("/sigin")
+        }).catch(res=>{
+          console.log(res)
+        })
+        // const data = new FormData(event.currentTarget);
+        // console.log({
+        //   email: data.get('email'),
+        //   password: data.get('password'),
+        // });
       };
 
 
@@ -60,6 +69,8 @@ const Signup:NextPage=()=>{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+           
+
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -73,23 +84,26 @@ const Signup:NextPage=()=>{
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  // name="firstName"
                   required
                   fullWidth
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  name="name"
+                  value={name}
+                  onChange={(e)=>setUser({...user,[e.target.name]:e.target.value})}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
+                {/* <TextField
                   required
                   fullWidth
                   id="lastName"
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
-                />
+                /> */}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -99,6 +113,8 @@ const Signup:NextPage=()=>{
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e)=>setUser({...user,[e.target.name]:e.target.value})}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -110,6 +126,8 @@ const Signup:NextPage=()=>{
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={password}
+                  onChange={(e)=>setUser({...user,[e.target.name]:e.target.value})}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -135,6 +153,7 @@ const Signup:NextPage=()=>{
               </Grid>
             </Grid>
           </Box>
+        {JSON.stringify({user})}
         </Box>
         {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>
