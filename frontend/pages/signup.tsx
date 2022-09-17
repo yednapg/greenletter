@@ -45,7 +45,7 @@ const Signup:NextPage=()=>{
 
         const promise=account.create("unique()",email,password,name)
         promise.then(res=>{
-            router.push("/sigin")
+            router.push("/signin")
         }).catch(res=>{
           console.log(res)
         })
