@@ -20,14 +20,15 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
+// import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 
 import ModeIcon from '@mui/icons-material/Mode';
-
-
+import Grid from '@mui/material/Grid';
+import { TextField } from '@mui/material';
+  
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -37,13 +38,10 @@ const Transition = React.forwardRef(function Transition(
   ) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
-
-
 interface s { 
     presentDates:Date[],
     absentDates:Date[]
 }
-
 
 const Selectclass:NextPage=()=>{
     const router =useRouter();
@@ -122,16 +120,11 @@ const Selectclass:NextPage=()=>{
     //     )
     // }
 
-
-
-
-
     return (
         <>
        profile
         <h3 style={{color:"red",textAlign:"center"}} >Students</h3>
-
-
+        <Button variant="outlined">Add Student</Button>
         <div className={styles.container}>
         
         <TableContainer component={Paper}>
@@ -167,33 +160,29 @@ const Selectclass:NextPage=()=>{
         </TableBody>
       </Table>
     </TableContainer>
-        {/* <input type="text" name="" id="" /> */}
-        {/* {studnets && studnets.map((student:any,index:any)=>{
-            // console.log(index)
-            return (
-                <div key={student.$id} className={styles.list}><div ><span className={styles.listItem}>{student.name}</span><span>{student.admissionNumber   }</span></div><div><span>edit</span><span className={styles.listItem}>delete</span></div></div>
-                
-            )
-        
-         })}  */}
        <Dialog
         open={open.status}
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
+        sx={{ m: 0.5 }}
       >
-        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle>{"Mark Attendance"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
-          </DialogContentText>
+              <Grid item xs={12}>
+                <TextField
+                  style={{ width: "100%" }}
+                  id="date"
+                  label="Date of Birth"
+                  type="date"
+                  defaultValue="2017-05-24" />
+              </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={()=>{handleSave(open.id,"present",temp)}}>Update Present</Button>
-          <Button onClick={()=>{handleSave(open.id,"absent",temp)}}>Update Absent</Button>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={()=>{handleSave(open.id,"present",temp)}}>Mark Present</Button>
+          <Button onClick={()=>{handleSave(open.id,"absent",temp)}}>Mark Absent</Button>
         </DialogActions>
       </Dialog>
             </div>

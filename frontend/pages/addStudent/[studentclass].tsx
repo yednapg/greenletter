@@ -7,8 +7,6 @@ import { useEffect, useState } from 'react'
 import { COLLECTION_ID, DATABASE_ID } from '../../config.env'
 import { account, database } from '../../config.keys'
 import styles from '../styles/Home.module.css'
-
-
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
