@@ -71,15 +71,21 @@
 
 .grid {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  /* width: 20rem; */
+  /* flex-wrap: wrap; */
   max-width: 800px;
 }
 
 .card {
   margin: 1rem;
   padding: 1.5rem;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: ; */
   text-align: left;
   color: inherit;
   text-decoration: none;
