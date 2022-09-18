@@ -33,6 +33,10 @@
   text-decoration: none;
 }
 
+.blue {
+  color: #0070f3;
+}
+
 .title a:hover,
 .title a:focus,
 .title a:active {

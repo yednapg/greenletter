@@ -68,7 +68,6 @@ const Selectclass:NextPage=()=>{
         }).catch(res=>{
             console.log(res)
         })
-    
     }
     const [open, setOpen] = React.useState({status:false,id:""});
     useEffect(()=>{
@@ -88,7 +87,6 @@ const Selectclass:NextPage=()=>{
         
       })
     }
-
 
     const handleSave=(id:any,type:string,data:string)=>{
         // setOpen(false)
@@ -117,14 +115,12 @@ const Selectclass:NextPage=()=>{
 
     // const pop=(id:any)=>{
     //     console.log(id);
-        
     //     if(open==true){
     //         return (
     //             <>
     //             {/* <Button variant="outlined" onClick={handleClickOpen}>
     //     Slide in alert dialog
     //      </Button> */}
-      
     //         </>
     //         )
     //     }
@@ -145,9 +141,11 @@ const Selectclass:NextPage=()=>{
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
+            <TableCell align="right">No. of Days Present</TableCell>
+            <TableCell align="right">No. of Days Absent</TableCell>
             <TableCell align="right">Admission No.</TableCell>
-            <TableCell align="right">Button&nbsp;</TableCell>
-            <TableCell align="right">Button&nbsp;</TableCell>
+            <TableCell align="right">Edit&nbsp;</TableCell>
+            <TableCell align="right">Delete&nbsp;</TableCell>
             <TableCell align="right">&nbsp;</TableCell>
           </TableRow>
         </TableHead>
@@ -160,6 +158,8 @@ const Selectclass:NextPage=()=>{
               <TableCell component="th" scope="row">
                 {student.name}
               </TableCell>
+              <TableCell align="right">{student.presentDates.length}</TableCell>
+              <TableCell align="right">{student.absentDates.length}</TableCell>
               <TableCell align="right">{student.admissionNumber}</TableCell>
               <TableCell align="right"><ModeIcon onClick={()=>
                { 
@@ -203,5 +203,4 @@ const Selectclass:NextPage=()=>{
         
     )
 }
-
 export default Selectclass;
