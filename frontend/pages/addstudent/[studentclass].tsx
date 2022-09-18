@@ -33,6 +33,7 @@ const Selectclass: NextPage = () => {
     dateofbirth: "",
     classNumber: "",
     admissionNumber: "",
+    
     presentDates: [],
     absentDates: [],
     succes: "",
@@ -177,7 +178,10 @@ const Selectclass: NextPage = () => {
                   id="date"
                   label="Date of Birth"
                   type="date"
-                  defaultValue="2017-05-24"
+                  value={dateofbirth}
+                  onChange={(e) =>
+                    setStudent({ ...student, dateofbirth: e.target.value })
+                  }
                 />
               </Grid>
               <Grid item xs={12}>

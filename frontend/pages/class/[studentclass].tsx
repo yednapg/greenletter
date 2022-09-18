@@ -78,8 +78,8 @@ const Selectclass:NextPage=()=>{
 
    const [temp,setTemp]=useState<string>("2022-09-18")
     // cosnt 
-    const deleteUser=(id:string)=>{
-      database.deleteDocument(DATABASE_ID,COLLECTION_ID,id).then(res=>{
+    const deleteUser=async (id:string)=>{
+      await database.deleteDocument(DATABASE_ID,COLLECTION_ID,id).then(res=>{
         console.log(res)
         fetchStudent();
       }).catch(err=>{
@@ -89,7 +89,7 @@ const Selectclass:NextPage=()=>{
     }
     const updateAbsent=(id:string)=>{
       console.log(user);
-      if(presentDates.length===0 && presentDates.length===0) return;
+      if(presentDates.length===0 && absentDates.length===0) return;
       database.updateDocument(DATABASE_ID,COLLECTION_ID,id,{presentDates,absentDates})
       .then(res=>{
           console.log(res);
@@ -99,12 +99,21 @@ const Selectclass:NextPage=()=>{
           
       })
       fetchStudent()
+     
     }
-
+const handleSubmit=(id)=>{
+  // setTimeout(()=>{
+  // },1000)
+  updateAbsent(id);
+  
+}
 // const finduser=(user,id)=>{
 //   return user.$id==id
 // }
 
+  const loadstate=()=>{
+
+  }
     const handleSave=async(id:any,type:string,data:string)=>{
         // setOpen(false)
         let currentuser;
@@ -115,20 +124,26 @@ const Selectclass:NextPage=()=>{
           // const element = students[i];
           
         }
+        setUser({absentDates:[...currentuser.absentDates],presentDates:[...currentuser.absentDates]})
         // console.log(currentuser);
         console.log(id);
         console.log(data)
+        console.log(currentuser);
+        
         if(type==="present"){
             setUser({...user,presentDates:[...currentuser.presentDates,data]})
             console.log(currentuser);
             
-        }else{
+        }else if(type==="absent"){
             
             setUser({...user,absentDates:[...currentuser.absentDates,data]})
         }
         
-        updateAbsent(id);
     }
+    // setTimeout(()=>{
+    //   updateAbsent(id);
+    // },1000)
+    
     const handleClose=()=>{
         setOpen({status:false,id:""})
     }
@@ -216,6 +231,7 @@ const Selectclass:NextPage=()=>{
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={()=>{handleSave(open.id,"present",temp)}}>Mark Present</Button>
           <Button onClick={()=>{handleSave(open.id,"absent",temp)}}>Mark Absent</Button>
+          <Button onClick={(e)=>{handleSubmit(open.id)}}>Submit</Button>
         </DialogActions>
       </Dialog>
             </div>
