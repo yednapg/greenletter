@@ -24,7 +24,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ModeIcon from '@mui/icons-material/Mode';
 import Grid from '@mui/material/Grid';
 import { TextField } from '@mui/material';
@@ -39,10 +39,10 @@ const Transition = React.forwardRef(function Transition(
     return <Slide direction="up" ref={ref} {...props} />;
   });
 interface s { 
-    presentDates:Date[],
-    absentDates:Date[]
+    presentDates:string[],
+    absentDates:string[]
 }
-
+const date = new Date(Date.UTC(2022, 9, 18, 3, 0, 0));
 const Selectclass:NextPage=()=>{
     const router =useRouter();
     let {studentclass}=router.query;
@@ -56,7 +56,7 @@ const Selectclass:NextPage=()=>{
     // class=string(class)
     // studentclass=String(studentclass) || " "
     const fetchStudent=()=>{
-        const stuclass=Number(studentclass)!;
+      const stuclass=Number(studentclass)!;
         console.log(studentclass)
         console.log(stuclass)   
         if (stuclass == NaN || stuclass==undefined ) return;
@@ -77,18 +77,31 @@ const Selectclass:NextPage=()=>{
 
    const {presentDates,absentDates}=user
 
-   const [temp,setTemp]=useState<Date>(new Date())
+   const [temp,setTemp]=useState<string>("")
 
-    const handleSave=(id:any,type:string,data:Date)=>{
+    const deleteUser=(id:string)=>{
+      database.deleteDocument(DATABASE_ID,COLLECTION_ID,id).then(res=>{
+        console.log(res)
+        fetchStudent();
+      }).catch(err=>{
+        console.log(err);
+        
+      })
+    }
+
+
+    const handleSave=(id:any,type:string,data:string)=>{
         // setOpen(false)
         console.log(id);
-        if(type="present"){
-            setUser({...user,presentDates:[...presentDates,data]})
+        console.log(data)
+        if(type==="present"){
+            setUser({...user,presentDates:[...user.presentDates,data]})
         }else{
             
             setUser({...user,absentDates:[...user.absentDates,data]})
         }
-
+        console.log(user);
+        
         database.updateDocument(DATABASE_ID,COLLECTION_ID,id,{presentDates,absentDates})
         .then(res=>{
             console.log(res);
@@ -124,7 +137,7 @@ const Selectclass:NextPage=()=>{
         <>
        profile
         <h3 style={{color:"red",textAlign:"center"}} >Students</h3>
-        <Button variant="outlined">Add Student</Button>
+        <Button onClick={()=>router.push(`/addstudent/${studentclass}`)} variant="outlined">Add Student</Button>
         <div className={styles.container}>
         
         <TableContainer component={Paper}>
@@ -153,7 +166,7 @@ const Selectclass:NextPage=()=>{
                 setOpen({status:true,id:student.$id})}
                 
                 }/></TableCell>
-              <TableCell align="right">{student.carbs}</TableCell>
+              <TableCell align="right"><DeleteForeverIcon onClick={()=>deleteUser(student.$id)}/></TableCell>
               <TableCell align="right">{student.protein}</TableCell>
             </TableRow>
           ))}
@@ -175,7 +188,8 @@ const Selectclass:NextPage=()=>{
                   id="date"
                   label=""
                   type="date"
-                  defaultValue="2017-05-24" />
+                  onChange={(e)=>setTemp(e.target.value)!}
+                  defaultValue={String(date.toLocaleDateString())} />
               </Grid>
         </DialogContent>
         <DialogActions>
