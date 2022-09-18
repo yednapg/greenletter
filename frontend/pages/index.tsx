@@ -20,22 +20,23 @@ const Home: NextPage = () => {
         </p>
         <div className={styles.grid}>
             <div>
+              {/* <Link href="/signup">signup</Link> */}
           <Link href="/signup" className={styles.card}>
-            <>
-            <h2 style={{padding:"2rem"}} >Sign Up </h2>
+            
+            <h2 style={{padding:"2rem",cursor:"pointer"}} >Sign Up </h2>
             {/* <p>Register as an admin of your institution to manage students.</p> */}
-            </>
+            
           </Link>
             </div>
           <div>
           </div>
           <Link href="/signin" className={styles.card}>
-            <>
-            <h2 style={{padding:"2rem"}} >Sign In </h2>
-            <div></div>
-            <br  />
+          
+            <h2 style={{padding:"2rem",cursor:"pointer"}} >Sign In </h2>
+            
+            
             {/* <p  >Login as an admin of your institution to see or update Students data.</p> */}
-            </>
+            
           </Link>       
         </div>
       </main>
