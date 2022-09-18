@@ -111,7 +111,6 @@ const Selectclass: NextPage = () => {
               <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
-                  // name="firstName"
                   required
                   fullWidth
                   id="firstName"
@@ -124,15 +123,14 @@ const Selectclass: NextPage = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  autoComplete="classNumber"
-                  // name="firstName"
                   required
                   fullWidth
-                  id="classNumber"
-                  label="ClassNumber"
-                  autoFocus
                   name="classNumber"
-                  value={classNumber}
+                  label="Class"
+                  type="numbers"
+                  id="classNumber"
+                  autoFocus
+                  autoComplete="classNumber"
                   onChange={(e) => setStudent({ ...student, [e.target.name]: e.target.value })}
                 />
               </Grid>
@@ -153,15 +151,8 @@ const Selectclass: NextPage = () => {
                   type="password"
                   id="admissionNumber"
                   autoComplete="admissionNumber"
-                  // value={password}
                   onChange={(e) => setStudent({ ...student, admissionNumber: e.target.value })}
                 />
-              </Grid>
-              <Grid item xs={12}>
-                {/* <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                /> */}
               </Grid>
             </Grid>
             <Button
