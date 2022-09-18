@@ -4,7 +4,12 @@
     width: 100vw;
     height: 100vh;
     flex-direction: column;
+<<<<<<< HEAD
 
+=======
+    /* justify-content: center; */
+    align-items: center;
+>>>>>>> c9163017004da181a91012c0b2194accd5c66500
 }
 .list{
     min-width: 40vw;
