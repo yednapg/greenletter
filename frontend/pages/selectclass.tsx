@@ -9,7 +9,8 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import { Grid } from '@mui/material';
-
+import styles from "../styles/Home.module.css"
+import { useRouter } from 'next/router';
 
 const options = ['Class I', 'Class II', 'Class III', 'Class IV', 'Class V', 'Class VI', 'Class VII', 'Class VIII', 'Class IX', 'Class X', 'Class XI', 'Class XII'];
 
@@ -17,6 +18,8 @@ export default function SplitButton() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLDivElement>(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+    const router =useRouter();
 
     const handleClick = () => {
         console.info(`You clicked ${options[selectedIndex]}`);
@@ -28,6 +31,8 @@ export default function SplitButton() {
     ) => {
         setSelectedIndex(index);
         setOpen(false);
+        // console.log(index);
+        
     };
 
     const handleToggle = () => {
@@ -47,7 +52,7 @@ export default function SplitButton() {
 
     return (
         <Grid container justifyContent="center" alignItems="center" marginTop="25%">
-                <h3 style={{color:"blue"}} >hello</h3>
+                <h3 style={{color:"blue"}} >Select Class</h3>
             <React.Fragment>
                 <Grid container justifyContent="center" alignItems="center">
                     <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
@@ -100,7 +105,11 @@ export default function SplitButton() {
                         )}
                     </Popper>
                 </Grid>
+                
             </React.Fragment>
+                <Button className={styles.margin} onClick={()=>router.push(`/class/${selectedIndex+1}`)} variant="outlined">
+                    Next
+                </Button>
         </Grid>
     );
 }

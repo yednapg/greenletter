@@ -46,6 +46,7 @@ const Signup: NextPage = () => {
 
     const promise = account.create("unique()", email, password, name)
     promise.then(res => {
+      
       router.push("/signin")
     }).catch(res => {
       console.log(res)
@@ -61,7 +62,7 @@ const Signup: NextPage = () => {
   return (
     // <ThemeProvider theme={theme}>
     <>
-      <Search />
+      {/* <Search /> */}
       <Container component="main" maxWidth="xs">
         <CssBaseline />
 
@@ -139,7 +140,7 @@ const Signup: NextPage = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signin" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
