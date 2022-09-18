@@ -28,7 +28,7 @@ import { TransitionProps } from '@mui/material/transitions';
 import ModeIcon from '@mui/icons-material/Mode';
 import Grid from '@mui/material/Grid';
 import { TextField } from '@mui/material';
-  
+
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -166,15 +166,14 @@ const Selectclass:NextPage=()=>{
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
-        sx={{ m: 0.5 }}
       >
         <DialogTitle>{"Mark Attendance"}</DialogTitle>
         <DialogContent>
               <Grid item xs={12}>
                 <TextField
-                  style={{ width: "100%" }}
+                  style={{ width: "100%"}}
                   id="date"
-                  label="Date of Birth"
+                  label=""
                   type="date"
                   defaultValue="2017-05-24" />
               </Grid>
