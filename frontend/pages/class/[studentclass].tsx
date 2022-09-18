@@ -77,7 +77,7 @@ const Selectclass:NextPage=()=>{
 
    const {presentDates,absentDates}=user
 
-   const [temp,setTemp]=useState<string>("")
+   const [temp,setTemp]=useState<string>("2022-09-18")
 
     const deleteUser=(id:string)=>{
       database.deleteDocument(DATABASE_ID,COLLECTION_ID,id).then(res=>{
@@ -110,6 +110,7 @@ const Selectclass:NextPage=()=>{
             console.log(err);
             
         })
+        fetchStudent()
     }
     const handleClose=()=>{
         setOpen({status:false,id:""})
@@ -189,7 +190,7 @@ const Selectclass:NextPage=()=>{
                   label=""
                   type="date"
                   onChange={(e)=>setTemp(e.target.value)!}
-                  defaultValue={String(date.toLocaleDateString())} />
+                  value={temp} />
               </Grid>
         </DialogContent>
         <DialogActions>
