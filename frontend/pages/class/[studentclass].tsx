@@ -101,7 +101,7 @@ const Selectclass:NextPage=()=>{
       fetchStudent()
      
     }
-const handleSubmit=(id)=>{
+const handleSubmit=(id:string)=>{
   // setTimeout(()=>{
   // },1000)
   updateAbsent(id);
