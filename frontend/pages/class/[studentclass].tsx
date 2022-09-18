@@ -135,7 +135,7 @@ const Selectclass:NextPage=()=>{
 
     return (
         <>
-       profile
+       
         <h3 style={{color:"red",textAlign:"center"}} >Students</h3>
         <Button onClick={()=>router.push(`/addstudent/${studentclass}`)} variant="outlined">Add Student</Button>
         <div className={styles.container}>
