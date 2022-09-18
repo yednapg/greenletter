@@ -176,7 +176,7 @@ const Selectclass: NextPage = () => {
                 <TextField
                   style={{ width: "100%" }}
                   id="date"
-                  label="Date of Birth"
+                  label=""
                   type="date"
                   value={dateofbirth}
                   onChange={(e) =>
