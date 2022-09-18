@@ -77,7 +77,7 @@ const Selectclass:NextPage=()=>{
    const {presentDates,absentDates}=user
 
    const [temp,setTemp]=useState<string>("2022-09-18")
-
+    // cosnt 
     const deleteUser=(id:string)=>{
       database.deleteDocument(DATABASE_ID,COLLECTION_ID,id).then(res=>{
         console.log(res)
@@ -87,28 +87,47 @@ const Selectclass:NextPage=()=>{
         
       })
     }
+    const updateAbsent=(id:string)=>{
+      console.log(user);
+      if(presentDates.length===0 && presentDates.length===0) return;
+      database.updateDocument(DATABASE_ID,COLLECTION_ID,id,{presentDates,absentDates})
+      .then(res=>{
+          console.log(res);
+          
+      }).catch(err=>{
+          console.log(err);
+          
+      })
+      fetchStudent()
+    }
 
-    const handleSave=(id:any,type:string,data:string)=>{
+// const finduser=(user,id)=>{
+//   return user.$id==id
+// }
+
+    const handleSave=async(id:any,type:string,data:string)=>{
         // setOpen(false)
+        let currentuser;
+        for (let i = 0; i < students.length; i++) {
+          if(students[i].$id==id){
+            currentuser=students[i];
+          }
+          // const element = students[i];
+          
+        }
+        // console.log(currentuser);
         console.log(id);
         console.log(data)
         if(type==="present"){
-            setUser({...user,presentDates:[...user.presentDates,data]})
+            setUser({...user,presentDates:[...currentuser.presentDates,data]})
+            console.log(currentuser);
+            
         }else{
             
-            setUser({...user,absentDates:[...user.absentDates,data]})
+            setUser({...user,absentDates:[...currentuser.absentDates,data]})
         }
-        console.log(user);
         
-        database.updateDocument(DATABASE_ID,COLLECTION_ID,id,{presentDates,absentDates})
-        .then(res=>{
-            console.log(res);
-            
-        }).catch(err=>{
-            console.log(err);
-            
-        })
-        fetchStudent()
+        updateAbsent(id);
     }
     const handleClose=()=>{
         setOpen({status:false,id:""})
