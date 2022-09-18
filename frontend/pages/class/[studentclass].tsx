@@ -40,8 +40,8 @@ const Transition = React.forwardRef(function Transition(
 
 
 interface s { 
-    presentDates:string[],
-    absentDates:string[]
+    presentDates:Date[],
+    absentDates:Date[]
 }
 
 
@@ -79,9 +79,9 @@ const Selectclass:NextPage=()=>{
 
    const {presentDates,absentDates}=user
 
-   
+   const [temp,setTemp]=useState<Date>(new Date())
 
-    const handleSave=(id:any,type:string,data:string)=>{
+    const handleSave=(id:any,type:string,data:Date)=>{
         // setOpen(false)
         console.log(id);
         if(type="present"){
@@ -192,8 +192,8 @@ const Selectclass:NextPage=()=>{
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={()=>{handleSave(open.id,"present")}}>Update Present</Button>
-          <Button onClick={()=>{handleSave(open.id,"absent")}}>Update Absent</Button>
+          <Button onClick={()=>{handleSave(open.id,"present",temp)}}>Update Present</Button>
+          <Button onClick={()=>{handleSave(open.id,"absent",temp)}}>Update Absent</Button>
         </DialogActions>
       </Dialog>
             </div>
