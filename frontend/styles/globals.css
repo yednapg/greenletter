@@ -11,6 +11,14 @@ a {
   text-decoration: none;
 }
 
+h1{
+  color: black;
+}
+
+p {
+  color: black;
+}
+
 * {
   box-sizing: border-box;
 }
