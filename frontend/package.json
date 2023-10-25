@@ -25,7 +25,7 @@
     "dayjs": "^1.11.5",
     "material-ui-image": "^3.3.2",
     "moment": "^2.29.4",
-    "next": "12.3.0",
+    "next": "13.5.0",
     "pnpm": "^7.26.0",
     "react": "18.2.0",
     "react-datepicker": "^4.8.0",
